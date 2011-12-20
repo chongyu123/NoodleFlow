@@ -1,7 +1,8 @@
 .bundle
 .redcar
 db/*.sqlite3
-log/*.log
+config/initializers/setup_mail.rb
+log/*
 tmp/
 Gemfile.lock
 public/upload
