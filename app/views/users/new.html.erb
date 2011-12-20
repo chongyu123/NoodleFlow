@@ -1,0 +1,49 @@
+<h1>Sign up</h1>
+
+<div class="pad">
+  
+  <div class="pad_body">
+  <%= form_for @user do |f| %>  
+    <% if @user.errors.any? %>  
+      <div class="error_messages">  
+      <h2>Form is invalid</h2>  
+      <ul>  
+      <% for message in @user.errors.full_messages %>  
+        <li><%= message %></li>  
+      <% end %>  
+      </ul>  
+      </div>  
+    <% end %>  
+      
+    <p>  
+      <%= f.select :organization_id, options_from_collection_for_select(Organization.all, :id, :name) %>
+    </p>  
+    <p>  
+      <%= f.label :first_name %><br />  
+      <%= f.text_field :first_name %>  
+    </p>  
+    <p>  
+      <%= f.label :last_name %><br />  
+      <%= f.text_field :last_name %>  
+    </p>  
+    <p>  
+      <%= f.label :email %><br />  
+      <%= f.text_field :email %>  
+    </p>  
+    <p>  
+      <%= f.label "User name or alias" %><br />  
+      <%= f.text_field :user_name %>  
+    </p>  
+    <p>  
+      <%= f.label :password %><br />  
+      <%= f.password_field :password %>  
+    </p>  
+    <p>  
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>  
+    </p>
+    <br />
+    <p class="button"><%= f.submit %></p> 
+  <% end %> 
+  </div>
+</div>

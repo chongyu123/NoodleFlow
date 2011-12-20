@@ -1,0 +1,18 @@
+<div class="pad">
+  <div class="pad_body">
+    <div style="font-size:18pt; font-weight:bold; color:#46a">Recent Updates</div>
+    <br /><br />
+    <% @events.each do |event| %>
+      <img src="/images/users/<%= event.user.image_name %>" style="float:left; border: solid 1px #ddd; width:32px">
+      <div class="newsfeed">
+        <b><%= event.source_name%></b>
+        <%= event.description %>
+        <br />
+        <span style="color:#aaa;font-size:11px;"><%= event.created_at.strftime("%m/%d/%Y %I:%M%p") %></span>
+      </div>
+      
+      <div class="divider"></div>
+      
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<style>
+#password, #email {
+  font-size: 20px;
+  width: 390px;
+}
+
+p.button {
+  text-align: center;
+}
+p.button > input {
+  width: 200px;
+  height: 60px;
+  border:1px solid #3e9533;
+  border-bottom-color:#3e9533;
+  color:#fff;
+  font-size: 20px;
+  font-weight:bold;
+  line-height:10px;
+  text-decoration:none;
+  text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -moz-box-shadow:0 0 1px #ddd;
+  -webkit-box-shadow:0 0 1px #ddd;
+  background:#3e9533;
+  filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#419b36',endColorstr='#357f2c');
+  background:-webkit-gradient(linear,0% 0,0% 100%,from(#419b36),to(#357f2c));
+  background:-moz-linear-gradient(-90deg,#419b36,#357f2c);
+  border-bottom-color:#3e9533;
+}
+</style>
+
+<br /><br />
+<div class="login">
+  <img src="/images/garden.jpeg">
+  <br /><br />
+  <div style="width: 400px; margin:auto; border">
+    <%= form_tag sessions_path do %>  
+      <p>  
+        <%= label_tag :email %><br />  
+        <%= text_field_tag :email, params[:email], :size => 30 %>  
+      </p>
+      <p> 
+        <%= label_tag :password %><br />  
+        <%= password_field_tag :password, "", :size => 30 %>  
+      </p>
+      <br />
+      <p class="button"><%= submit_tag "Login" %></p>
+    <% end %> 
+  </div>
+</div>

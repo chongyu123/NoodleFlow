@@ -1,0 +1,42 @@
+<div class="pad">
+  <div class="pad_toolbar">
+    <%= render 'shared/pad_tabs' %>
+  </div>
+
+  <div class="pad_header">
+    <span class="pad_header_name"><%= @pad.name %></span>
+    <br/>
+  </div>
+  
+  <div class="pad_body">
+    <div class="invite">
+      <span class="section_header">Invite New User</span>
+      <% form_for :permission do |f| %>
+        User name
+        <%= f.select :user_id, options_from_collection_for_select(session[:organization].users, :id, :full_name) %>
+        
+        <br />
+        <%= f.radio_button(:status, Permission::STAT_ADMIN) %>
+        <%= f.label(:status_admin, "Admin - Full control of the Pad") %>
+        <br />
+        <%= f.radio_button(:status, Permission::STAT_MEMBER) %>
+        <%= f.label(:status_member, "Member - Full control except for user management") %>
+        
+        <p class="button"><%= f.submit "Invite" %></p>
+      <% end %>
+    </div>
+    
+    <br />
+    <span class="section_header">Current Users</span>
+    
+    <% @pad.permissions.each do |permission| %>
+    <div class="permission">
+      <span style="font-size:14px;color:#333;font-weight:bold;"><%= permission.user.full_name %></span>
+      <%= permission.status_name %>
+      (<%= link_to 'Edit', edit_pad_permission_path(@pad, permission) %> | 
+      <%= link_to 'Delete', pad_permission_path(@pad, permission), :confirm => 'Are you sure?', :method => :delete %>)
+    </div>
+    <% end %>
+    <br />
+  </div>    
+</div>

@@ -1,0 +1,55 @@
+<div class="pad">
+  <div class="pad_toolbar">
+    <%= render 'shared/pad_tabs' %>
+  </div>
+
+  <div class="pad_header">
+    <span class="pad_header_name"><%= @pad.name %></span>
+    <br/>
+    <%= link_to 'New Conversation', new_pad_conversation_path %>
+  </div>  
+
+  <div class="pad_body">
+
+    <% @conversations.each do |conversation| %>
+  
+      <% if conversation.published %>
+        <div class="published">
+      <% end %>
+        
+      <span class="section_header"><%= conversation.topic %></span>
+      ( <%= link_to 'Delete', pad_conversation_path(@pad, conversation), :confirm => 'Are you sure?', :method => :delete %> | 
+      <%if conversation.published %>
+      <%= link_to 'Unpublish', pad_conversation_path(@pad, conversation, :published => 'n'), :method => :put %>
+      <% else %>
+      <%= link_to 'Publish', pad_conversation_path(@pad, conversation, :published => 'y'), :method => :put %>
+      <% end %>
+      )
+        
+      <br /><br />
+    
+    <% conversation.messages.each do |message| %>
+        <img src="/images/users/<%= message.user.image_name %>" style="float:left; border: solid 1px #ddd; width:32px">
+        <div class="message">
+          <b><%= message.user_name %></b> <span style="color:#aaa;;font-size:12px;"><%= message.created_at.strftime("%m/%d/%Y %I:%M%p") %></span>
+          <br />
+          <%= message.body %>
+        </div>
+      <% end %>
+
+      <%= form_for([@pad, conversation, @message]) do |f| %>
+      <div class="field">
+        <%= f.text_area :body, :cols => 80, :rows => 2 %>
+        <br />
+        <%= f.submit "Post"%>
+      </div>
+      <% end %>
+
+      <% if conversation.published %>
+        </div>
+      <% end %>
+
+    <% end %>
+    
+  </div>
+</div>

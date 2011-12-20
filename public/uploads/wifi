@@ -1,0 +1,27 @@
+[root@localhost ~]# lsmod | grep rt
+
+Not working
+---------------
+rt73usb                30533  0 
+crc_itu_t               6337  1 rt73usb
+parport_pc             29157  1 
+parport                37513  2 lp,parport_pc
+rt2500usb              25669  0 
+rt2x00usb              16833  2 rt73usb,rt2500usb
+rt2x00lib              34753  3 rt73usb,rt2500usb,rt2x00usb
+mac80211              139073  2 rt2x00usb,rt2x00lib
+cfg80211              141449  2 rt2x00lib,mac80211
+
+
+When works
+--------------
+rt73usb                30533  0 
+crc_itu_t               6337  1 rt73usb
+rt2500usb              25669  0 
+parport_pc             29157  1 
+parport                37513  2 lp,parport_pc
+rt2x00usb              16833  2 rt73usb,rt2500usb
+rt2x00lib              34753  3 rt73usb,rt2500usb,rt2x00usb
+mac80211              139073  2 rt2x00usb,rt2x00lib
+cfg80211              141449  2 rt2x00lib,mac80211
+

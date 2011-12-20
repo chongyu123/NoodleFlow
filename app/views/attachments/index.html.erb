@@ -1,0 +1,31 @@
+<div class="pad">
+  <div class="pad_toolbar">
+    <%= render 'shared/pad_tabs' %>
+  </div>
+
+  <div class="pad_header">
+    <span class="pad_header_name"><%= @pad.name %></span>
+  </div>  
+
+  <div class="pad_body">
+    <span class="section_header">Add New File</span>
+    <br />
+    <%= render 'form' %>
+    
+    <div class="divider"></div>
+    
+    <span class="section_header">File List</span>
+    <br />
+    <% @attachments.each do |attachment| %>
+      <div class="attachment">
+        <span style="font-size:16px; font-weight:bold;"><%= link_to attachment.name, '/uploads/' + attachment.name %></span>
+        <span style="color:#aaa;;font-size:12px;"><%= attachment.created_at.strftime("%m/%d/%Y %I:%M%p") %></span>
+        (<%= link_to 'Edit', edit_pad_attachment_path(@pad, attachment) %> | 
+        <%= link_to 'Delete', pad_attachment_path(@pad, attachment), :confirm => 'Are you sure?', :method => :delete %>)
+        <div style="height:5px"></div>
+        <span style="color: #888;"><%= attachment.description %></span>
+      </div>  
+    <% end %>
+  </div>
+  
+</div>

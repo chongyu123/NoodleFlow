@@ -1,0 +1,23 @@
+Git info
+
+Clone URL
+ssh://git3.xp-dev.com/simplex-raingarden
+
+Backup Clone URL (read only)
+ssh://gitslave.xp-dev.com/simplex-raingarden 
+
+==========
+Start project
+
+Generate keys
+----------------
+ssh-keygen -t rsa
+(pass phases will be prompted.  This will be needed when checking in/out from repository)
+
+After creating the keys, go to ~/.ssh/ and copy id_rsa.pup file content into the public key field in xp-dev settings page
+NOTE: When copying the public key, be sure to remove the newline chars from the key.  (use the text editor)
+
+
+Set global settings
+$ git config --global user.name chongyu123
+$ git config --global user.email chongyu123@gmail.com

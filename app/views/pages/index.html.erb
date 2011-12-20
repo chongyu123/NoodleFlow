@@ -1,0 +1,39 @@
+<div class="pad">
+  <div class="pad_toolbar">
+    <%= render 'shared/pad_tabs' %>
+  </div>
+  
+  <div class="pad_header">
+    <span class="pad_header_name"><%= @pad.name %></span>
+    <br/>
+    <%= link_to 'Add New Note', new_pad_page_path %>
+  </div>
+  
+  <div class="pad_body">
+    <% @pages.each do |page| %>
+      
+      <% if page.published %>
+        <div class="published">
+      <% end %>
+        <span class="section_header"><%= page.title %></span>
+        ( <%= link_to 'Edit', edit_pad_page_path(@pad, page) %> | 
+        <%= link_to 'Delete', pad_page_path(@pad, page), :confirm => 'Are you sure?', :method => :delete %> | 
+      <%if page.published %>
+        <%= link_to 'Unpublish', pad_page_path(@pad, page, :published => 'n'), :method => :put %>
+        <% else %>
+        <%= link_to 'Publish', pad_page_path(@pad, page, :published => 'y'), :method => :put %>
+      <% end %>
+        )
+        <br />
+        <%= raw(Kramdown::Document.new(page.body).to_html) %>
+        <br /><br />
+      <% if page.published %>
+        </div>
+      <% end %>
+      
+      <div class="divider"></div>
+      
+    <% end %>
+  </div>
+
+</div>

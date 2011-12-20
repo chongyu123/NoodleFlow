@@ -1,0 +1,7 @@
+<%= link_to 'Public', @pad, :class=>(@selected_tab == :public ? "tab_selected":"tab") %> |
+<%= link_to 'Notes' + ' (' + @tabs[:page].to_s + ')', pad_pages_path(@pad), :class=>(@selected_tab == :page ? "tab_selected":"tab")  %> |
+<%= link_to 'Files' + ' (' + @tabs[:attachment].to_s + ')', pad_attachments_path(@pad), :class=>(@selected_tab == :attachment ? "tab_selected":"tab")  %> <%=%> |
+<%= link_to 'Conversations' + ' (' + @tabs[:conversation].to_s + ')', pad_conversations_path(@pad), :class=>(@selected_tab == :conversation ? "tab_selected":"tab") %>
+<% if @pad.allow_permission( session[:user_id] ) %> 
+  | <%= link_to 'Permission', pad_permissions_path(@pad), :class=>(@selected_tab == :permission ? "tab_selected":"tab") %>
+<% end %>

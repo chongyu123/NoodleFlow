@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Pad:</b>
+  <%= @permission.pad_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @permission.user_id %>
+</p>
+
+<p>
+  <b>Is admin:</b>
+  <%= @permission.is_admin %>
+</p>
+
+<p>
+  <b>Send email events:</b>
+  <%= @permission.send_email_events %>
+</p>
+
+<p>
+  <b>Show dashboard events:</b>
+  <%= @permission.show_dashboard_events %>
+</p>
+
+
+<%= link_to 'Edit', edit_permission_path(@permission) %> |
+<%= link_to 'Back', permissions_path %>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beer Garden: <%= session[:account] %></title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"%>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+
+</head>
+<body>
+<div class="header">
+  <div class="logotitle" onclick="javascript:location.href='<%= pads_path %>'"> <%= session[:organization].name %></div>
+  <div class="headerlinks">
+    user: <%= session[:user_name] %>  | 
+    <%= link_to "Log out", log_out_path, :class => "headerlinks" %>
+  </div>
+</div>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+  <div class="nav_menu">
+    <a class="newpadbutton" href="<%= new_pad_path%>">New Pad</a>
+
+    <%= link_to 'Recent Updates', pads_path %>  
+    <br /><br />
+    <b>My Pads</b>
+    <br />
+    <% @pads.each do |pad| %>
+      <%= link_to pad.name, pad %>
+      <br />
+    <% end %>
+    
+    <br />
+    <b>Other Menu [TBD]</b>
+  </div>
+</td>
+<td width="100%" valign="top">
+<%= yield %>
+</td></tr>
+</table>
+</body>
+</html>

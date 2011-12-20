@@ -1,0 +1,51 @@
+<span id="notice"><%= notice %></span>
+
+<div class="pad">
+  <% if @pad.allow_collaborate( session[:user_id]) %>
+    <div class="pad_toolbar">
+      <%= render 'shared/pad_tabs' %>
+    </div>
+  <% end %>
+
+  <div class="pad_header">
+    <span class="pad_header_name"><%= @pad.name %></span>
+    <% if @pad.allow_delete( session[:user_id]) %>
+      (<%= link_to 'Edit', edit_pad_path(@pad) %> | 
+      <%= link_to 'Delete', @pad, :confirm => 'Are you sure?', :method => :delete %>)
+    <% end %>
+    <br />
+    <div style="color:#999;"><%= @pad.description %></div>
+  </div>
+  
+  <div class="pad_body">
+    
+    <% @pad.pages.each do |page| %>
+      <% if page.published %>
+        <span class="section_header"><%= page.title %></span>
+        <br/>
+        <%= raw(Kramdown::Document.new(page.body).to_html) %>
+        <br/><br/>
+        <div class="divider"></div>
+      <% end %>
+    <% end %>
+    
+    <% @pad.conversations.each do |conversation| %>
+      <% if conversation.published %>
+        <span class="section_header"><%= conversation.topic %></span>
+        <br /><br />
+        <% conversation.messages.each do |message| %>
+        <img src="/images/users/<%= message.user.image_name %>" style="float:left; border: solid 1px #ddd; width:32px">
+        <div class="message">
+          <b><%= message.user_name %></b> <span style="color:#aaa;font-size:12px;"><%= message.created_at.strftime("%m/%d/%Y %I:%M%p") %></span>
+          <br />
+          <%= message.body %>
+        </div>
+        <% end %>
+        <br />
+        <div class="divider"></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<br />
