@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20110606075755) do
     t.integer  "conversation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
     t.string   "user_name"
   end
 
