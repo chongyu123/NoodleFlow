@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
     if @organization.nil?
       redirect_to '/404.html'
     end 
+    @organization = Organization.find_by_subdomain(subdomain_name)
+    session[:organization] = @organization
   end
 
   def create  

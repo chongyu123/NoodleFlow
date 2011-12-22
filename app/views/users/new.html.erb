@@ -15,9 +15,7 @@
       </div>  
     <% end %>  
       
-    <p>  
-      <%= f.select :organization_id, options_from_collection_for_select(Organization.all, :id, :name) %>
-    </p>  
+      
     <p>  
       <%= f.label :first_name %><br />  
       <%= f.text_field :first_name %>  

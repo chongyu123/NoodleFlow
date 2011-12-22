@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
-  def create  
-    @user = User.new(params[:user])
+  def create
+    @user = session[:organization].users.create(params[:user])
     @user.email.downcase!
     @user.image_name = 'user.jpg'
     
