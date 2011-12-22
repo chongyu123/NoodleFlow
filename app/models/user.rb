@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password  
   validates_presence_of :password, :on => :create  
   validates_presence_of :email  
-  validates_uniqueness_of :email 
+  validates_uniqueness_of :email, :scope => :organization_id #unique as combined :email and :organization_id
   validates_presence_of :user_name
   
   def encrypt_password  
